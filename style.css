@@ -1,194 +1,234 @@
 /* ==========================================================================
-   PART 1: VARIABLES, BASE STYLES, HEADER & LAYOUT
+   PART 1: VARIABLES, GLOBAL RESETS & PREMIUM NAVBAR INFRASTRUCTURE
    ========================================================================== */
 
 :root {
-    --bg-color: #181a20;
-    --card-bg: #212630;
-    --text-main: #eaecef;
-    --text-muted: #848e9c;
-    --binance-yellow: #fcd535;
-    --binance-yellow-hover: #e2be28;
-    --crypto-green: #0ecb81;
-    --border-color: #2b3139;
+    --bg-main: #f8fafc;          /* Fundal principal alb luminos și curat */
+    --bg-card: #ffffff;          /* Fundal pentru carduri - alb pur */
+    --primary: #00c853;          /* Verde intens pentru butoane principale */
+    --primary-lime: #aeea00;     /* Verde lime electrizant pentru accente și boost */
+    --primary-hover: #00b020;    /* Verde închis pentru starea de hover */
+    --text-main: #0f172a;        /* Text principal închis la culoare, foarte lizibil */
+    --text-muted: #64748b;       /* Text secundar / gri moale pentru detalii */
+    --border-color: #e2e8f0;     /* Margini fine, deschise la culoare */
+    --crypto-green: #00c853;     /* Culoare pentru succese blockchain */
+    --danger-red: #f6465d;       /* Roșu pentru erori / acțiuni anulate */
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-h1 {
-    font-size: 32px;
-    margin-bottom: 8px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    background-color: var(--bg-color);
+    background-color: var(--bg-main);
     color: var(--text-main);
-    padding: 40px 20px;
+    line-height: 1.5;
+    padding-bottom: 60px;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-/* Header Config */
-header {
+/* NAVBAR PREMIUM RESPONSIVE */
+.navbar {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
-    flex-wrap: wrap;
-    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.header-right {
+.brand-container {
     display: flex;
     align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.logo {
+.brand-logo {
     font-size: 24px;
-    font-weight: 700;
-    color: var(--binance-yellow);
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
-.logo span {
-    color: var(--text-main);
-    font-weight: 400;
-}
-
-.wallet-balance {
-    background-color: var(--bg-color);
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: 1px solid var(--border-color);
-    font-size: 14px;
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-.btn-connect {
-    background-color: var(--binance-yellow);
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-    white-space: nowrap;
-}
-
-.btn-connect:hover {
-    background-color: var(--binance-yellow-hover);
-}
-
-.hero {
-    margin-bottom: 40px;
-}
-
-.hero p {
-    color: var(--text-muted);
-    font-size: 16px;
-}
-
-/* Layout Responsiv Grid */
-.main-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 30px;
-}
-
-/* Elemente Card-uri & Calculator */
-.calculator-card {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 24px;
-    border: 1px solid var(--border-color);
-    height: fit-content;
-}
-
-.calculator-card h2 {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    color: var(--text-muted);
-    font-size: 12px;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
-
-.form-group select, .form-group input {
-    width: 100%;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
-    padding: 12px;
-    border-radius: 4px;
-    font-size: 14px;
-    outline: none;
-}
-
-.form-group select:focus, .form-group input:focus {
-    border-color: var(--binance-yellow);
-}
-
-.result-box {
-    background-color: var(--bg-color);
-    padding: 16px;
-    border-radius: 4px;
-    border-left: 4px solid var(--binance-yellow);
-    margin-top: 24px;
-}
-
-.result-box .label {
-    font-size: 12px;
-    color: var(--text-muted);
-}
-
-.result-box .value {
+.brand-name {
     font-size: 20px;
-    font-weight: 700;
-    color: var(--crypto-green);
-    margin-top: 4px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.brand-suffix {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.wallet-btn {
+    background-color: var(--text-main);
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wallet-btn:hover {
+    background-color: var(--primary);
+    transform: translateY(-1px);
 }
 /* ==========================================================================
-   PART 2: MARKET TABLES, MODALS, SYSTEM NOTIFICATIONS, COOKIES & RESPONSIVENESS
+   PART 2: HERO SECTION, LAYOUT GRID & DEFI VAULT CARDS
    ========================================================================== */
 
-/* Market List Table Configuration */
-.market-card {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 24px;
-    border: 1px solid var(--border-color);
-    max-height: 700px;
-    overflow-y: auto;
-    overflow-x: hidden;
+/* HERO SECTION CU STRAT VIZUAL PROASPĂT */
+.hero-section {
+    max-width: 800px;
+    margin: 40px auto 20px auto;
+    padding: 0 20px;
+    text-align: center;
 }
 
-.market-card h2 {
-    font-size: 18px;
+.badge-boost {
+    display: inline-block;
+    background-color: var(--primary-lime);
+    color: #0f172a;
+    padding: 6px 14px;
+    font-weight: 700;
+    font-size: 12px;
+    border-radius: 20px;
     margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(174, 234, 0, 0.2);
+}
+
+.hero-title {
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+    color: var(--text-main);
+}
+
+.gradient-text {
+    color: var(--primary);
+}
+
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* STRUCTURA GRILĂ INTEGRALĂ */
+.main-grid {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 25px;
+    padding: 0 20px;
+}
+
+.left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.crypto-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--text-main);
+    border-bottom: 2px solid var(--bg-main);
+    padding-bottom: 8px;
+}
+
+.wallet-balance-status {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* FORMULARE ȘI SELECTOARE CURATE */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.crypto-input, .crypto-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.crypto-input:focus, .crypto-select:focus {
+    border-color: var(--primary);
+    background-color: #ffffff;
+}
+/* ==========================================================================
+   PART 3: TABLES, MODALS, PRECISE COOKIE SYSTEMS & PHONE SMARTPHONE MEDIA QUERIES
+   ========================================================================== */
+
+.calculator-result-box {
+    background-color: var(--bg-main);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid var(--primary-lime);
+}
+
+.result-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.result-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-top: 4px;
+}
+
+/* LISTE ȘI POOL-URI DE PERFORMANȚĂ */
+.history-list {
+    list-style: none;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .table-container {
@@ -196,442 +236,210 @@ header {
     overflow-x: auto;
 }
 
-table {
+.product-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 500px;
 }
 
-th {
+.product-th {
     text-align: left;
-    color: var(--text-muted);
+    padding: 12px;
     font-size: 12px;
-    font-weight: 500;
-    padding-bottom: 16px;
+    color: var(--text-muted);
     border-bottom: 1px solid var(--border-color);
 }
 
-td {
-    padding: 16px 0;
+.product-td {
+    padding: 14px 12px;
     border-bottom: 1px solid var(--border-color);
-    vertical-align: middle;
-}
-
-.coin-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-}
-
-.coin-symbol {
-    color: var(--text-muted);
-    font-size: 12px;
-    font-weight: 400;
-}
-
-.apy-value {
-    color: var(--crypto-green);
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.duration-badge {
-    background-color: var(--bg-color);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    border: 1px solid var(--border-color);
-}
-
-.btn-subscribe {
-    background-color: var(--border-color);
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    padding: 6px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.btn-subscribe:hover {
-    background-color: var(--binance-yellow);
-    color: #000;
-    border-color: var(--binance-yellow);
-}
-
-/* Staking Positions History */
-.history-section {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-}
-
-.history-section h3 {
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-.history-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.history-item {
-    background-color: var(--bg-color);
-    padding: 12px 16px;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid var(--border-color);
     font-size: 14px;
-    gap: 10px;
 }
 
-/* Pop-up Modals Styling */
-.modal-overlay {
+.subscribe-btn {
+    background-color: var(--primary);
+    color: #ffffff;
+    border: none;
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.subscribe-btn:hover {
+    background-color: var(--text-main);
+}
+
+.lime-text {
+    background-color: #f1fbe7;
+    color: #4e8c00;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* POPOPS ȘI CONSENTIMENT COOKIE */
+/* ==========================================================================
+   REBRANDING: ULTRA-PREMIUM ALERTS & MODAL SYSTEM (WHITE & LIME VAULTS)
+   ========================================================================== */
+
+.custom-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: none;
+    background-color: rgba(15, 23, 42, 0.3); /* Fundal întunecat discret de tip sticlă */
+    backdrop-filter: blur(8px);               /* Efect premium de blur modern */
+    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     padding: 20px;
+    animation: fadeInModal 0.25s ease-out;
 }
 
-.modal-content {
-    background-color: var(--card-bg);
-    padding: 24px;
-    border-radius: 8px;
+.custom-modal-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 32px;
     width: 100%;
-    max-width: 400px;
+    max-width: 440px;
     border: 1px solid var(--border-color);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    transform: translateY(0);
+    animation: slideUpModal 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.close-modal:hover {
-    color: var(--text-main);
-}
-
-.btn-confirm-tx {
-    width: 100%;
-    background-color: var(--crypto-green);
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: opacity 0.2s;
-}
-
-.btn-confirm-tx:hover {
-    opacity: 0.9;
-}
-
-/* Scrollbar Tweaks */
-.market-card::-webkit-scrollbar {
-    width: 6px;
-}
-.market-card::-webkit-scrollbar-track {
-    background: var(--bg-color);
-    border-radius: 4px;
-}
-.market-card::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 4px;
-}
-.market-card::-webkit-scrollbar-thumb:hover {
-    background: var(--text-muted);
-}
-
-/* APY Promo Badges */
-.promo-banner {
-    background: linear-gradient(90deg, #fcd535 0%, #ff9900 100%);
-    color: #000;
-    padding: 12px 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(252, 213, 53, 0.2);
-    animation: pulseGlow 2s infinite alternate;
-    gap: 15px;
-}
-
-.promo-badge {
-    background-color: #ff9900;
-    color: white;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 8px;
-    text-transform: uppercase;
+/* Stiluri specifice pentru pictogramele de stare */
+.modal-alert-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
     display: inline-block;
-    vertical-align: middle;
 }
 
-@keyframes pulseGlow {
-    0% { transform: scale(1); box-shadow: 0 4px 15px rgba(252, 213, 53, 0.2); }
-    100% { transform: scale(1.01); box-shadow: 0 4px 25px rgba(252, 213, 53, 0.5); }
+.modal-main-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
 }
 
-/* Premium Toast Notifications */
-.toast-container {
+.modal-alert-body-message {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+
+/* Butonul principal de Acknowledge / Confirmare în noul ton verde */
+.custom-alert-action-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--text-main);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+    transition: all 0.2s ease;
+}
+
+.custom-alert-action-btn:hover {
+    background-color: var(--primary); /* Devine verde intens la trecerea mouse-ului */
+    box-shadow: 0 6px 16px rgba(0, 200, 83, 0.25);
+    transform: translateY(-1px);
+}
+
+/* ANIMAȚII FINE */
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUpModal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.cookie-consent-footer-bar {
     position: fixed;
     bottom: 20px;
-    right: 20px;
-    z-index: 2000;
+    left: 5%;
+    right: 5%;
+    background-color: var(--text-main);
+    color: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-width: calc(100% - 40px);
-}
-
-.crypto-toast {
-    background-color: var(--card-bg);
-    color: var(--text-main);
-    border-left: 4px solid var(--binance-yellow);
-    border-top: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    padding: 16px 24px;
-    border-radius: 6px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    font-size: 14px;
-    font-weight: 500;
-    min-width: 280px;
-    display: flex;
-    align-items: center;
     gap: 12px;
-    animation: slideInRight 0.3s ease-out forwards;
+    z-index: 999;
 }
 
-.crypto-toast.success { border-left-color: var(--crypto-green); }
-.crypto-toast.error { border-left-color: #f6465d; }
+.cookie-btn-accept {
+    background-color: var(--primary-lime);
+    color: #000;
+    border: none;
+    padding: 8px 14px;
+    font-weight: 600;
+    border-radius: 6px;
+}
 
-.alert-modal-content {
+/* OPTIMIZARE CRITICĂ PENTRU ECRANE DE TELEFON (SMARTPHONE DISPLAY) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 16px;
+    }
+    .hero-title {
+        font-size: 28px;
+    }
+    .hero-subtitle {
+        font-size: 13px;
+    }
+    /* Transformă grila din 2 coloane într-un singur rând ordonat de sus în jos */
+    .main-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 12px;
+    }
+    .crypto-card {
+        padding: 16px;
+    }
+    .cookie-consent-footer-bar {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+    }
+}
+
+.system-footer {
     text-align: center;
-    max-width: 360px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    padding: 30px 20px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+    background-color: #ffffff;
 }
 
-.alert-icon {
-    font-size: 40px;
+.footer-links-row {
     margin-bottom: 10px;
 }
 
-/* Legal Footer Config */
-footer {
-    margin-top: 60px;
-    padding: 30px 0;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
+.footer-link {
     color: var(--text-muted);
-    font-size: 13px;
     text-decoration: none;
-    transition: color 0.2s;
-}
-
-.footer-links a:hover {
-    color: var(--binance-yellow);
-}
-
-.copyright {
-    color: #5e6673;
+    margin: 0 10px;
     font-size: 12px;
-    line-height: 1.5;
-    padding: 0 10px;
 }
 
-/* Cookie Bar Plan */
-.cookie-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #1e2329;
-    border-top: 1px solid var(--border-color);
-    padding: 20px 40px;
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    z-index: 3000;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
-    animation: slideUpCookie 0.4s ease-out forwards;
-}
-
-.cookie-content {
-    color: var(--text-main);
-    font-size: 13px;
-    line-height: 1.6;
-    max-width: 75%;
-}
-
-.cookie-actions {
-    display: flex;
-    gap: 12px;
-}
-
-.btn-cookie-accept {
-    background-color: var(--binance-yellow);
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background 0.2s;
-    white-space: nowrap;
-}
-
-.btn-cookie-accept:hover {
-    background-color: var(--binance-yellow-hover);
-}
-
-.btn-cookie-decline {
-    background-color: transparent;
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background 0.2s;
-    white-space: nowrap;
-}
-
-.btn-cookie-decline:hover {
-    background-color: var(--card-bg);
-}
-
-/* Animation Timers */
-@keyframes slideInRight {
-    from { transform: translateX(120%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-@keyframes fadeOut {
-    to { opacity: 0; transform: translateY(10px); }
-}
-@keyframes slideUpCookie {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-}
-
-/* MEDIA QUERIES FOR DISPLAY BREAKPOINTS */
-@media (max-width: 900px) {
-    body {
-        padding: 20px 10px;
-    }
-    .main-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    h1 {
-        font-size: 26px;
-    }
-    .promo-banner {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-}
-
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .header-right {
-        width: 100%;
-        justify-content: space-between;
-    }
-    .cookie-bar {
-        flex-direction: column;
-        padding: 20px;
-        text-align: center;
-        gap: 15px;
-    }
-    .cookie-content {
-        max-width: 100%;
-    }
-    .cookie-actions {
-        width: 100%;
-        justify-content: center;
-    }
-    .toast-container {
-        bottom: 10px;
-        right: 10px;
-        max-width: calc(100% - 20px);
-    }
-    .crypto-toast {
-        min-width: 100%;
-    }
-}
-/* Real Crypto Icons Styling */
-.coin-icon-img {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    object-fit: contain;
-    vertical-align: middle;
-}
-
-.binance-logo-img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    vertical-align: middle;
-    animation: rotateLogo 4s infinite linear;
-}
-
-/* Modificare ușoară pentru alinierea corectă în tabel */
-.coin-info {
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Spațiu elegant între logo și text */
-    font-weight: 600;
+.footer-copyright-text {
+    font-size: 11px;
+    color: var(--text-muted);
 }

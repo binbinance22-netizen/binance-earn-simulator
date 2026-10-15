@@ -3,245 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binance Earn - Transaction Simulator</title>
-    <!-- REAL FAVICON (Binance Icon) -->
-    <link rel="icon" type="image/png" href="https://cryptologos.cc">
-    
-    <link rel="icon" type="image/x-icon" href="logo/bnb-logo.png">
+    <title>LimeYield Labs | Decentralized Premium Staking Hub</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="container">
-    <!-- Top Navigation Bar with Live Balance -->
-    <header>
-        <div class="logo"><img src="logo/bnb-logo.png" alt="" width="30px"> Binance <span>Earn</span></div>
-        <div class="header-right">
-            <div class="wallet-balance" id="walletBalanceDisplay">Wallet Disconnected</div>
-            <button class="btn-connect" id="walletBtn">Connect Wallet</button>
+    <!-- NAVBAR PREMIUM LUMINOASĂ -->
+    <nav class="navbar">
+        <div class="brand-container">
+            <div class="brand-logo">🟢</div>
+            <div class="brand-name">LimeYield <span class="brand-suffix">Labs</span></div>
         </div>
+        <button id="walletBtn" class="wallet-btn">Connect Wallet</button>
+    </nav>
+
+    <!-- HERO SECTION CU STIL DEFI MINIMALIST -->
+    <header class="hero-section">
+        <div class="badge-boost">🔥 FLASH PROMOTION: +5.00% APY BOOST ENABLED</div>
+        <h1 class="hero-title">Smart & Decentralized <br><span class="gradient-text">Yield Generation</span></h1>
+        <p class="hero-subtitle">Securely commit your digital cryptographic assets into decentralized liquidity structures and accumulate optimized daily yield metrics instantly.</p>
     </header>
 
-    <!-- Hero / Introduction Section -->
-    <section class="hero">
-        <h1>Simple & Secure Staking</h1>
-        <p>Deposit your favorite digital assets and earn daily yields (APY) in a straightforward and protected environment.</p>
-    </section>
-
-    <!-- Binance VIP Promotion Banner -->
-    <div class="promo-banner">
-        <div>🔥 LIMITED TIME OFFER: Get an extra +5% APY Boost on all staking products!</div>
-        <span style="font-size: 12px; font-weight: bold;">Stake Now</span>
-    </div>
-
-    <main class="main-layout">
-        <!-- Profit Calculator Card -->
-        <section class="calculator-card">
-            <h2>Profit Calculator</h2>
-            <div class="form-group">
-                <label for="coinSelect">Select Coin</label>
-                <select id="coinSelect">
-                    <!-- Stablecoins & Majors -->
-                    <option value="USDT" data-apy="17.50">USDT (Tether)</option>
-                    <option value="USDC" data-apy="16.80">USDC (USD Coin)</option>
-                    <option value="DAI" data-apy="14.20">DAI (Dai)</option>
-                    <option value="FDUSD" data-apy="15.10">FDUSD (First Digital USD)</option>
-                    <option value="BTC" data-apy="8.20">BTC (Bitcoin)</option>
-                    <option value="ETH" data-apy="9.80">ETH (Ethereum)</option>
-                    <option value="BNB" data-apy="10.50">BNB (BNB)</option>
-                    <!-- Layer 1 Networks -->
-                    <option value="SOL" data-apy="12.40">SOL (Solana)</option>
-                    <option value="ADA" data-apy="9.10">ADA (Cardano)</option>
-                    <option value="XRP" data-apy="7.50">XRP (Ripple)</option>
-                    <option value="DOT" data-apy="18.20">DOT (Polkadot)</option>
-                    <option value="AVAX" data-apy="13.50">AVAX (Avalanche)</option>
-                    <option value="NEAR" data-apy="14.10">NEAR (Near Protocol)</option>
-                    <option value="SUI" data-apy="15.50">SUI (Sui Network)</option>
-                    <option value="APT" data-apy="16.20">APT (Aptos)</option>
-                    <option value="TON" data-apy="11.30">TON (Toncoin)</option>
-                    <option value="TRX" data-apy="9.70">TRX (TRON)</option>
-                    <option value="LINK" data-apy="10.20">LINK (Chainlink)</option>
-                    <option value="ATOM" data-apy="19.10">ATOM (Cosmos)</option>
-                    <option value="ALGO" data-apy="11.40">ALGO (Algorand)</option>
-                    <option value="FTM" data-apy="12.10">FTM (Fantom)</option>
-                    <option value="ICP" data-apy="13.20">ICP (Internet Computer)</option>
-                    <option value="EGLD" data-apy="17.80">EGLD (MultiversX)</option>
-                    <option value="HBAR" data-apy="10.10">HBAR (Hedera)</option>
-                    <option value="VET" data-apy="8.90">VET (VeChain)</option>
-                    <!-- Layer 2 Networks -->
-                    <option value="MATIC" data-apy="11.80">MATIC (Polygon)</option>
-                    <option value="OP" data-apy="12.90">OP (Optimism)</option>
-                    <option value="ARB" data-apy="13.10">ARB (Arbitrum)</option>
-                    <option value="MNT" data-apy="14.40">MNT (Mantlenet)</option>
-                    <option value="STRK" data-apy="16.50">STRK (Starknet)</option>
-                    <!-- AI & DePIN Ecosystem -->
-                    <option value="FET" data-apy="15.80">FET (ASI Fetch.ai)</option>
-                    <option value="RNDR" data-apy="13.70">RNDR (Render)</option>
-                    <option value="TAO" data-apy="19.30">TAO (Bittensor)</option>
-                    <option value="FIL" data-apy="14.50">FIL (Filecoin)</option>
-                    <option value="GRT" data-apy="12.20">GRT (The Graph)</option>
-                    <option value="AR" data-apy="13.90">AR (Arweave)</option>
-                    <option value="THETA" data-apy="11.10">THETA (Theta Network)</option>
-                    <!-- DeFi Ecosystem -->
-                    <option value="UNI" data-apy="9.50">UNI (Uniswap)</option>
-                    <option value="AAVE" data-apy="11.10">AAVE (Aave)</option>
-                    <option value="MKR" data-apy="10.80">MKR (Maker)</option>
-                    <option value="LDO" data-apy="9.20">LDO (Lido DAO)</option>
-                    <option value="CAKE" data-apy="23.50">CAKE (PancakeSwap)</option>
-                    <option value="CRV" data-apy="16.20">CRV (Curve DAO)</option>
-                    <option value="RUNE" data-apy="14.70">RUNE (THORChain)</option>
-                    <!-- Meme Coins -->
-                    <option value="DOGE" data-apy="6.80">DOGE (Dogecoin)</option>
-                    <option value="SHIB" data-apy="7.20">SHIB (Shiba Inu)</option>
-                    <option value="PEPE" data-apy="8.50">PEPE (Pepe Coin)</option>
-                    <option value="WIF" data-apy="10.40">WIF (dogwifhat)</option>
-                    <option value="BONK" data-apy="9.80">BONK (Bonk)</option>
-                    <option value="FLOKI" data-apy="11.20">FLOKI (Floki Inu)</option>
-                </select>
+    <!-- CONTAINERUL PRINCIPAL PENTRU ARHITECTURA GRILĂ -->
+    <main class="main-grid">
+        
+        <!-- COLOANA DIN STÂNGA: CALCULATOR DE PROFIT & WALLET STATUS -->
+        <section class="left-column">
+            
+            <div class="crypto-card status-card">
+                <div class="card-title">🌐 Node Infrastructure</div>
+                <div id="walletBalanceDisplay" class="wallet-balance-status">Wallet Disconnected</div>
             </div>
-            <div class="form-group">
-                <label for="amountInput">Subscription Amount</label>
-                <input type="number" id="amountInput" value="1000" min="1">
+
+            <div class="crypto-card calculator-card">
+                <div class="card-title">
+                    📊 Dynamic Yield Estimator 
+                    <span class="badge-count">100+ Tokens Live</span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="coinSelect">Select Asset Ecosystem</label>
+                    <select id="coinSelect" class="crypto-select">
+                        <option value="BTC" data-apy="6.4">BTC (Bitcoin) - 6.40% APY</option>
+                        <option value="ETH" data-apy="7.8">ETH (Ethereum) - 7.80% APY</option>
+                        <option value="USDT" data-apy="12.5">USDT (Tether USD) - 12.50% APY</option>
+                        <option value="BNB" data-apy="9.5">BNB (BNB Chain) - 9.50% APY</option>
+                        <option value="SOL" data-apy="11.2">SOL (Solana) - 11.20% APY</option>
+                        <option value="USDC" data-apy="12.2">USDC (USD Coin) - 12.20% APY</option>
+                        <option value="XRP" data-apy="5.4">XRP (Ripple Ledger) - 5.40% APY</option>
+                        <option value="ADA" data-apy="6.2">ADA (Cardano) - 6.20% APY</option>
+                        <option value="DOGE" data-apy="8.1">DOGE (Dogecoin PoW) - 8.10% APY</option>
+                        <option value="TRX" data-apy="6.8">TRX (TRON Network) - 6.80% APY</option>
+                        <option value="TON" data-apy="8.9">TON (The Open Network) - 8.90% APY</option>
+                        <option value="WBTC" data-apy="6.3">WBTC (Wrapped Bitcoin) - 6.30% APY</option>
+                        <option value="AVAX" data-apy="10.5">AVAX (Avalanche C-Chain) - 10.50% APY</option>
+                        <option value="SHIB" data-apy="7.2">SHIB (Shiba Inu Ecosystem) - 7.20% APY</option>
+                        <option value="DOT" data-apy="14.6">DOT (Polkadot Web3) - 14.60% APY</option>
+                        <option value="LINK" data-apy="8.5">LINK (Chainlink Oracles) - 8.50% APY</option>
+                        <option value="BCH" data-apy="5.8">BCH (Bitcoin Cash) - 5.80% APY</option>
+                        <option value="NEAR" data-apy="11.2">NEAR (Near Protocol) - 11.20% APY</option>
+                        <option value="MATIC" data-apy="9.8">MATIC (Polygon PoS) - 9.80% APY</option>
+                        <option value="LTC" data-apy="6.1">LTC (Litecoin Ledger) - 6.10% APY</option>
+                        <option value="PEPE" data-apy="9.5">PEPE (Pepe Ecosystem) - 9.50% APY</option>
+                        <option value="UNI" data-apy="8.2">UNI (Uniswap Governance) - 8.20% APY</option>
+                        <option value="ICP" data-apy="9.5">ICP (Internet Computer) - 9.50% APY</option>
+                        <option value="SUI" data-apy="11.5">SUI (Sui Network Move) - 11.50% APY</option>
+                        <option value="APT" data-apy="12.1">APT (Aptos Ecosystem) - 12.10% APY</option>
+                        <option value="ETC" data-apy="7.1">ETC (Ethereum Classic) - 7.10% APY</option>
+                        <option value="DAI" data-apy="11.8">DAI (Multi-Collateral USD) - 11.80% APY</option>
+                        <option value="RENDER" data-apy="12.9">RENDER (Render Network) - 12.90% APY</option>
+                        <option value="HBAR" data-apy="7.6">HBAR (Hedera Hashgraph) - 7.60% APY</option>
+                        <option value="WHBAR" data-apy="7.6">WHBAR (Wrapped Hedera) - 7.60% APY</option>
+                        <option value="XLM" data-apy="5.2">XLM (Stellar Lumens) - 5.20% APY</option>
+                        <option value="KAS" data-apy="13.4">KAS (Kaspa BlockDAG) - 13.40% APY</option>
+                        <option value="FIL" data-apy="10.8">FIL (Filecoin Storage) - 10.80% APY</option>
+                        <option value="STX" data-apy="12.4">STX (Stacks Bitcoin L2) - 12.40% APY</option>
+                        <option value="ATOM" data-apy="15.4">ATOM (Cosmos Hub Ecosystem) - 15.40% APY</option>
+                        <option value="IMX" data-apy="11.4">IMX (Immutable Layer-2) - 11.40% APY</option>
+                        <option value="ARB" data-apy="10.4">ARB (Arbitrum Scaling Hub) - 10.40% APY</option>
+                        <option value="OP" data-apy="10.1">OP (Optimism Superchain) - 10.10% APY</option>
+                        <option value="VET" data-apy="6.9">VET (VeChain Thor Supply) - 6.90% APY</option>
+                        <option value="MKR" data-apy="8.6">MKR (Maker Engine) - 8.60% APY</option>
+                        <option value="LDO" data-apy="7.9">LDO (Lido Staking DAO) - 7.90% APY</option>
+                        <option value="GRT" data-apy="9.7">GRT (The Graph Web3 Engine) - 9.70% APY</option>
+                        <option value="THETA" data-apy="8.4">THETA (Video Infrastructure) - 8.40% APY</option>
+                        <option value="RUNE" data-apy="13.2">RUNE (THORChain Liquidity) - 13.20% APY</option>
+                        <option value="FLOKI" data-apy="11.5">FLOKI (Floki Core Utilities) - 11.50% APY</option>
+                        <option value="FTM" data-apy="11.8">FTM (Fantom Sonic Engine) - 11.80% APY</option>
+                        <option value="AAVE" data-apy="9.4">AAVE (DeFi Credit Protocol) - 9.40% APY</option>
+                        <option value="ALGO" data-apy="7.1">ALGO (Algorand Pure PoS) - 7.10% APY</option>
+                        <option value="FLOW" data-apy="9.1">FLOW (Flow Web3 Open App) - 9.10% APY</option>
+                        <option value="EGLD" data-apy="14.2">EGLD (MultiversX Sharding) - 14.20% APY</option>
+                        <option value="SAND" data-apy="10.2">SAND (The Sandbox Protocol) - 10.20% APY</option>
+                        <option value="MANA" data-apy="9.9">MANA (Decentraland Metaverse) - 9.90% APY</option>
+                        <option value="XTZ" data-apy="8.1">XTZ (Tezos Self-Amending) - 8.10% APY</option>
+                        <option value="EOS" data-apy="6.5">EOS (EOS Network High PoS) - 6.50% APY</option>
+                        <option value="AXS" data-apy="15.2">AXS (Axie Governance Hub) - 15.20% APY</option>
+                        <option value="CHZ" data-apy="8.7">CHZ (Chiliz Sports Ledger) - 8.70% APY</option>
+                        <option value="NEO" data-apy="7.5">NEO (Smart Economy Engine) - 7.50% APY</option>
+                        <option value="MINA" data-apy="10.6">MINA (Succinct Proof Ledger) - 10.60% APY</option>
+                        <option value="CRV" data-apy="12.5">CRV (Curve Finance Protocol) - 12.50% APY</option>
+                        <option value="COMP" data-apy="9.2">COMP (Compound Markets Hub) - 9.20% APY</option>
+                        <option value="SNX" data-apy="13.7">SNX (Synthetix Assets) - 13.70% APY</option>
+                        <option value="DASH" data-apy="6.7">DASH (Digital Cash Core) - 6.70% APY</option>
+                        <option value="ZEC" data-apy="5.9">ZEC (Zcash Zero-Knowledge) - 5.90% APY</option>
+                        <option value="XMR" data-apy="4.8">XMR (Monero Crypto Vault) - 4.80% APY</option>
+                        <option value="IOTA" data-apy="7.8">IOTA (Tangle Smart Networks) - 7.80% APY</option>
+                        <option value="LRC" data-apy="8.9">LRC (Loopring Layer-2 Core) - 8.90% APY</option>
+                        <option value="ENJ" data-apy="9.5">ENJ (Enjin Matrix Platform) - 9.50% APY</option>
+                        <option value="BAT" data-apy="7.2">BAT (Basic Attention Token) - 7.20% APY</option>
+                        <option value="ZIL" data-apy="9.3">ZIL (Zilliqa High Sharding) - 9.30% APY</option>
+                        <option value="QTUM" data-apy="7.9">QTUM (UTXO Smart Framework) - 7.90% APY</option>
+                        <option value="ANKR" data-apy="9.1">ANKR (Web3 Infrastructure) - 9.10% APY</option>
+                        <option value="ONE" data-apy="11.3">ONE (Harmony Sharded Vault) - 11.30% APY</option>
+                        <option value="ONT" data-apy="7.1">ONT (Ontology Identity Engine) - 7.10% APY</option>
+                        <option value="RVN" data-apy="5.3">RVN (Ravencoin Token Matrix) - 5.30% APY</option>
+                        <option value="WAVES" data-apy="8.1">WAVES (Custom Asset Engine) - 8.10% APY</option>
+                        <option value="ENS" data-apy="8.8">ENS (Ethereum Name Service) - 8.80% APY</option>
+                        <option value="YFI" data-apy="8.4">YFI (Yearn Finance Vaults) - 8.40% APY</option>
+                        <option value="SUSHI" data-apy="11.6">SUSHI (SushiSwap Core DEX) - 11.60% APY</option>
+                        <option value="1INCH" data-apy="9.4">1INCH (Liquidity Aggregator) - 9.40% APY</option>
+                        <option value="KAVA" data-apy="14.8">KAVA (Co-Chain DeFi Portal) - 14.80% APY</option>
+                        <option value="WOO" data-apy="10.8">WOO (Deep Liquidity Core) - 10.80% APY</option>
+                        <option value="GLMR" data-apy="13.5">GLMR (Moonbeam Parachain) - 13.50% APY</option>
+                        <option value="ASTR" data-apy="12.2">ASTR (Astar Smart Contracts) - 12.20% APY</option>
+                        <option value="METIS" data-apy="11.2">METIS (Optimistic Rollup L2) - 11.20% APY</option>
+                        <option value="ROSE" data-apy="11.9">ROSE (Oasis Privacy Platform) - 11.90% APY</option>
+                        <option value="IOTX" data-apy="10.4">IOTX (IoTeX Trusted Node) - 10.40% APY</option>
+                        <option value="KSM" data-apy="15.1">KSM (Kusama Network Relay) - 15.10% APY</option>
+                        <option value="HOT" data-apy="8.3">HOT (Holo Distributed Apps) - 8.30% APY</option>
+                        <option value="ZRX" data-apy="7.4">ZRX (0x Open Trade Router) - 7.40% APY</option>
+                        <option value="OMG" data-apy="6.5">OMG (Plasma Scalability L2) - 6.50% APY</option>
+                        <option value="DGB" data-apy="5.6">DGB (DigiByte High Speed) - 5.60% APY</option>
+                        <option value="ICX" data-apy="8.2">ICX (Icon Interoperability) - 8.20% APY</option>
+                        <option value="SC" data-apy="9.6">SC (Siacoin Decentralized Cloud) - 9.60% APY</option>
+                        <option value="WAXP" data-apy="11.7">WAXP (Worldwide eXchange NFT) - 11.70% APY</option>
+                        <option value="SKL" data-apy="12.8">SKL (Skale Elastic Pools) - 12.80% APY</option>
+                        <option value="GLM" data-apy="8.5">GLM (Golem Network Compute) - 8.50% APY</option>
+                        <option value="MASK" data-apy="13.4">MASK (Social Identity Layer) - 13.40% APY</option>
+                        <option value="JASMY" data-apy="14.1">JASMY (Data Privacy IoT) - 14.10% APY</option>
+                        <option value="BAND" data-apy="11.5">BAND (Data Oracle Matrix) - 11.50% APY</option>
+                        <option value="CELO" data-apy="11.0">CELO (Mobile-First Protocol) - 11.00% APY</option>
+                    </select>
+                    <div class="select-help-text">💡 Scroll through the database to discover all 100+ fully-supported algorithmic networks.</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="amountInput">Subscription Allocation Sizing</label>
+                    <input type="number" id="amountInput" class="crypto-input" value="1000" placeholder="Specify token volume...">
+                </div>
+
+                <div class="calculator-result-box">
+                    <div class="result-label">Projected Annual Capital Growth:</div>
+                    <div id="profitResult" class="result-value">0.00 USDT</div>
+                </div>
             </div>
-            <div class="result-box">
-                <div class="label">Estimated Profit (Annual)</div>
-                <div class="value" id="profitResult">0.00 USDT</div>
+
+            <div class="crypto-card status-card">
+                <div class="card-title">🔒 Node Subscriptions</div>
+                <ul id="historyList" class="history-list">
+                    <li style="color: var(--text-muted); font-size: 13px;">No verified blockchain subscription tunnels recognized on this node index.</li>
+                </ul>
             </div>
         </section>
+        <!-- COLOANA DIN DREAPTA: TABELUL ȘI FEED-UL LIVE DE LICHIDITATE -->
+        <section class="right-column">
+            <div class="crypto-card product-showcase-card">
+                <div class="card-title">⚡ High-Liquidity Yield Pools</div>
+                <div class="table-container">
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th class="product-th">Ecosystem Token</th>
+                                <th class="product-th">Optimized APY</th>
+                                <th class="product-th">Pool Strategy</th>
+                                <th class="product-th">Deployment Execution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="product-td"><strong>🟢 USDT</strong> <span class="badge-stable">Stablecoin</span></td>
+                                <td class="product-td apy-highlight">12.50% <span class="lime-text">+5% Boost</span></td>
+                                <td class="product-td text-muted">Fluid Flexible</td>
+                                <td class="product-td"><button class="subscribe-btn" onclick="openStakeModal('USDT', 12.5)">Initialize</button></td>
+                            </tr>
+                            <tr>
+                                <td class="product-td"><strong>🔵 USDC</strong> <span class="badge-stable">Stablecoin</span></td>
+                                <td class="product-td apy-highlight">12.20% <span class="lime-text">+5% Boost</span></td>
+                                <td class="product-td text-muted">Fluid Flexible</td>
+                                <td class="product-td"><button class="subscribe-btn" onclick="openStakeModal('USDC', 12.2)">Initialize</button></td>
+                            </tr>
+                            <tr>
+                                <td class="product-td"><strong>🔷 ETH</strong> <span class="badge-layer">Layer 1</span></td>
+                                <td class="product-td apy-highlight">7.80% <span class="lime-text">+5% Boost</span></td>
+                                <td class="product-td text-muted">Fluid Flexible</td>
+                                <td class="product-td"><button class="subscribe-btn" onclick="openStakeModal('ETH', 7.8)">Initialize</button></td>
+                            </tr>
+                            <tr>
+                                <td class="product-td"><strong>🟣 SOL</strong> <span class="badge-layer">Layer 1</span></td>
+                                <td class="product-td apy-highlight">9.20% <span class="lime-text">+5% Boost</span></td>
+                                <td class="product-td text-muted">90-Day Lock</td>
+                                <td class="product-td"><button class="subscribe-btn" onclick="openStakeModal('SOL', 9.2)">Initialize</button></td>
+                            </tr>
+                            <tr>
+                                <td class="product-td"><strong>🔺 AVAX</strong> <span class="badge-layer">Layer 1</span></td>
+                                <td class="product-td apy-highlight">10.50% <span class="lime-text">+5% Boost</span></td>
+                                <td class="product-td text-muted">30-Day Lock</td>
+                                <td class="product-td"><button class="subscribe-btn" onclick="openStakeModal('AVAX', 10.5)">Initialize</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-        <!-- Popular Products Table Section -->
-        <section class="market-card">
-            <h2>Popular Products</h2>
-            
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Asset</th>
-                            <th>Est. APY</th>
-                            <th>Type/Duration</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Monede 1 - 25 -->
-                        <tr><td><div class="coin-info"><img src="logo/tether-usdt-logo.png" width="20px" alt="usdt"> USDT <span class="coin-symbol">Tether</span></div></td><td><span class="apy-value">17.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('USDT', 17.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info"><img src="logo/usd-coin-usdc-logo.png" width="20px" alt="usdc"> USDC <span class="coin-symbol">USD Coin</span></div></td><td><span class="apy-value">16.80% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('USDC', 16.80)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info"><img src="logo/multi-collateral-dai-dai-logo.png" width="20px" alt="dai"> DAI <span class="coin-symbol">Dai</span></div></td><td><span class="apy-value">14.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('DAI', 14.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">💱 FDUSD <span class="coin-symbol">First Digital USD</span></div></td><td><span class="apy-value">15.10% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('FDUSD', 15.10)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🟧 BTC <span class="coin-symbol">Bitcoin</span></div></td><td><span class="apy-value">8.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('BTC', 8.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🔷 ETH <span class="coin-symbol">Ethereum <small style="color:var(--binance-yellow)">(Local Network)</small></span></div></td><td><span class="apy-value">9.80% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('ETH', 9.80)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🟨 BNB <span class="coin-symbol">BNB</span></div></td><td><span class="apy-value">10.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">60 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('BNB', 10.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🟣 SOL <span class="coin-symbol">Solana</span></div></td><td><span class="apy-value">12.40% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">90 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('SOL', 12.40)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🔵 ADA <span class="coin-symbol">Cardano</span></div></td><td><span class="apy-value">9.10% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('ADA', 9.10)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🔘 XRP <span class="coin-symbol">Ripple</span></div></td><td><span class="apy-value">7.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('XRP', 7.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🔴 DOT <span class="coin-symbol">Polkadot</span></div></td><td><span class="apy-value">18.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">90 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('DOT', 18.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🔺 AVAX <span class="coin-symbol">Avalanche</span></div></td><td><span class="apy-value">13.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('AVAX', 13.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">Ⓝ NEAR <span class="coin-symbol">Near Protocol</span></div></td><td><span class="apy-value">14.10% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">90 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('NEAR', 14.10)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">💧 SUI <span class="coin-symbol">Sui Network</span></div></td><td><span class="apy-value">15.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('SUI', 15.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🌀 APT <span class="coin-symbol">Aptos</span></div></td><td><span class="apy-value">16.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">60 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('APT', 16.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">💎 TON <span class="coin-symbol">Toncoin</span></div></td><td><span class="apy-value">11.30% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('TON', 11.30)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🔴 TRX <span class="coin-symbol">TRON</span></div></td><td><span class="apy-value">9.70% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('TRX', 9.70)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">⬡ LINK <span class="coin-symbol">Chainlink</span></div></td><td><span class="apy-value">10.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('LINK', 10.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">⚛️ ATOM <span class="coin-symbol">Cosmos</span></div></td><td><span class="apy-value">19.10% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">90 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('ATOM', 19.10)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🇩 ALGO <span class="coin-symbol">Algorand</span></div></td><td><span class="apy-value">11.40% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('ALGO', 11.40)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">👻 FTM <span class="coin-symbol">Fantom</span></div></td><td><span class="apy-value">12.10% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">60 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('FTM', 12.10)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">♾️ ICP <span class="coin-symbol">Internet Computer</span></div></td><td><span class="apy-value">13.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">90 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('ICP', 13.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">⚡ EGLD <span class="coin-symbol">MultiversX</span></div></td><td><span class="apy-value">17.80% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">90 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('EGLD', 17.80)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">ℏ HBAR <span class="coin-symbol">Hedera</span></div></td><td><span class="apy-value">10.10% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('HBAR', 10.10)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🔗 VET <span class="coin-symbol">VeChain</span></div></td><td><span class="apy-value">8.90% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('VET', 8.90)">Subscribe</button></td></tr>
-                        <!-- Monede 26 - 50 -->
-                        <tr><td><div class="coin-info">💜 MATIC <span class="coin-symbol">Polygon</span></div></td><td><span class="apy-value">11.80% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">60 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('MATIC', 11.80)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🔴 OP <span class="coin-symbol">Optimism</span></div></td><td><span class="apy-value">12.90% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('OP', 12.90)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🔵 ARB <span class="coin-symbol">Arbitrum</span></div></td><td><span class="apy-value">13.10% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">60 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('ARB', 13.10)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🧱 MNT <span class="coin-symbol">Mantlenet</span></div></td><td><span class="apy-value">14.40% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">90 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('MNT', 14.40)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🐺 STRK <span class="coin-symbol">Starknet</span></div></td><td><span class="apy-value">16.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('STRK', 16.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🤖 FET <span class="coin-symbol">ASI (Fetch.ai)</span></div></td><td><span class="apy-value">15.80% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('FET', 15.80)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🎬 RNDR <span class="coin-symbol">Render</span></div></td><td><span class="apy-value">13.70% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('RNDR', 13.70)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🧠 TAO <span class="coin-symbol">Bittensor</span></div></td><td><span class="apy-value">19.30% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">90 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('TAO', 19.30)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🗄️ FIL <span class="coin-symbol">Filecoin</span></div></td><td><span class="apy-value">14.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">60 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('FIL', 14.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">📊 GRT <span class="coin-symbol">The Graph</span></div></td><td><span class="apy-value">12.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('GRT', 12.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🕸️ AR <span class="coin-symbol">Arweave</span></div></td><td><span class="apy-value">13.90% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('AR', 13.90)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">📺 THETA <span class="coin-symbol">Theta Network</span></div></td><td><span class="apy-value">11.10% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">60 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('THETA', 11.10)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🦄 UNI <span class="coin-symbol">Uniswap</span></div></td><td><span class="apy-value">9.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('UNI', 9.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">👻 AAVE <span class="coin-symbol">Aave</span></div></td><td><span class="apy-value">11.10% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('AAVE', 11.10)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">👑 MKR <span class="coin-symbol">Maker</span></div></td><td><span class="apy-value">10.80% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('MKR', 10.80)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">💧 LDO <span class="coin-symbol">Lido DAO</span></div></td><td><span class="apy-value">9.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('LDO', 9.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🥞 CAKE <span class="coin-symbol">PancakeSwap</span></div></td><td><span class="apy-value">23.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">90 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('CAKE', 23.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🧪 CRV <span class="coin-symbol">Curve DAO</span></div></td><td><span class="apy-value">16.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('CRV', 16.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">⚡ RUNE <span class="coin-symbol">THORChain</span></div></td><td><span class="apy-value">14.70% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('RUNE', 14.70)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🐕 DOGE <span class="coin-symbol">Dogecoin</span></div></td><td><span class="apy-value">6.80% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('DOGE', 6.80)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🐾 SHIB <span class="coin-symbol">Shiba Inu</span></div></td><td><span class="apy-value">7.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('SHIB', 7.20)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🐸 PEPE <span class="coin-symbol">Pepe Coin</span></div></td><td><span class="apy-value">8.50% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('PEPE', 8.50)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🎩 WIF <span class="coin-symbol">dogwifhat</span></div></td><td><span class="apy-value">10.40% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('WIF', 10.40)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">🦴 BONK <span class="coin-symbol">Bonk</span></div></td><td><span class="apy-value">9.80% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">Flexible</span></td><td><button class="btn-subscribe" onclick="openStakeModal('BONK', 9.80)">Subscribe</button></td></tr>
-                        <tr><td><div class="coin-info">⚔️ FLOKI <span class="coin-symbol">Floki Inu</span></div></td><td><span class="apy-value">11.20% <span class="promo-badge">+5% Boost</span></span></td><td><span class="duration-badge">30 Days</span></td><td><button class="btn-subscribe" onclick="openStakeModal('FLOKI', 11.20)">Subscribe</button></td></tr>
-                    </tbody>
-                </table>
-            </div> <!-- End of table-container -->
-            <!-- Active Staking Positions Section -->
-            <div class="history-section">
-                <h3>Active Staking Assets</h3>
-                <ul class="history-list" id="historyList">
-                    <!-- Transactions dynamically managed via JS -->
+            <!-- TABLOU DEMO DE ACTIVITATE RECENTĂ -->
+            <div class="crypto-card live-activity-card">
+                <div class="card-title">
+                    🟢 Live Liquidity Inflow
+                    <span class="pulse-dot"></span>
+                </div>
+                <div class="activity-header">
+                    <span>Network Participant</span>
+                    <span>Allocated Capital</span>
+                    <span>Ecosystem Pool</span>
+                </div>
+                <ul id="liveActivityList" class="activity-feed-list">
+                    <li class="activity-item-demo placement-placeholder">Establishing secure web3 telemetry matrix...</li>
                 </ul>
             </div>
         </section>
     </main>
-
-    <!-- Binance Inspired Legal Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="#">Terms of Service</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Cookie Preferences</a>
-            <a href="#">Risk Disclosure</a>
-        </div>
-        <div class="copyright">
-            &copy; 2026 Binance Earn Simulator. All rights reserved. Cryptocurrency trading and staking involve significant risk.
-        </div>
-    </footer>
-</div>
-
-<!-- Modal Staking Window -->
-<div class="modal-overlay" id="stakeModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>Subscribe to Staking <span id="modalCoinName">USDT</span></h3>
-            <button class="close-modal" onclick="closeStakeModal()">&times;</button>
-        </div>
-        <div class="modal-body">
-            <p style="color: var(--text-muted); margin-bottom: 15px;">Annual Yield (APY): <span id="modalApyValue" style="color: var(--crypto-green); font-weight: bold;">0%</span></p>
-            <div class="form-group">
-                <label>Amount to Lock</label>
-                <input type="number" id="modalAmountInput" placeholder="Enter amount" min="1">
+    <!-- MODULE DE DIALOG ȘI COOKIE SYSTEMS -->
+    <div id="stakeModal" class="custom-modal-overlay" style="display: none;">
+        <div class="custom-modal-card">
+            <h3 class="modal-main-title">Deploy Assets to Vault</h3>
+            <div class="modal-meta-row">Ecosystem Token Layer: <span id="modalCoinName" class="modal-highlight-text">-</span></div>
+            <div class="modal-meta-row">Assigned Target APY: <span id="modalApyValue" class="modal-highlight-text apy-highlight">-</span></div>
+            <div class="form-group" style="margin-top: 15px;">
+                <label class="form-label">Vault Allocation Sizing</label>
+                <input type="number" id="modalAmountInput" class="crypto-input" placeholder="Enter sizing threshold...">
             </div>
-            <button class="btn-confirm-tx" id="confirmTxBtn">Confirm Transaction</button>
+            <div class="modal-btn-action-row">
+                <button class="modal-btn-cancel" onclick="closeStakeModal()">Abort Request</button>
+                <button id="confirmTxBtn" class="modal-btn-confirm">Authorize Allocation</button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Custom Web3 Alert Pop-up -->
-<div class="modal-overlay" id="customAlertModal">
-    <div class="modal-content alert-modal-content">
-        <div class="alert-icon" id="customAlertIcon">🔶</div>
-        <h3 id="customAlertTitle">Notification</h3>
-        <p id="customAlertMessage" style="color: var(--text-muted); margin: 15px 0 20px 0; line-height: 1.5;"></p>
-        <button class="btn-confirm-tx" id="customAlertBtn">Confirm</button>
+    <div id="customAlertModal" class="custom-modal-overlay" style="display: none;">
+        <div class="custom-modal-card text-center">
+            <div id="customAlertIcon" class="modal-alert-icon">🔶</div>
+            <h3 id="customAlertTitle" class="modal-main-title">Network Notice</h3>
+            <p id="customAlertMessage" class="modal-alert-body-message">System notification dispatch message.</p>
+            <button id="customAlertBtn" class="custom-alert-action-btn">Acknowledge</button>
+        </div>
     </div>
-</div>
 
-<!-- Cookie Bar -->
-<div class="cookie-bar" id="cookieBar">
-    <div class="cookie-content">
-        🔶 We use cookies to enhance your experience, analyze site traffic, and deliver personalized content aligned with our Web3 services. By clicking "Accept All", you agree to our use of cookies.
+    <div id="cookieBar" class="cookie-consent-footer-bar" style="display: none;">
+        <div class="cookie-text-side">We leverage cryptographic cache cookies to optimize and secure network node sync interactions. By persisting on this domain interface, you authorize these parameters.</div>
+        <div class="cookie-btn-side">
+            <button class="cookie-btn-decline" onclick="handleCookie(false)">Decline</button>
+            <button class="cookie-btn-accept" onclick="handleCookie(true)">Accept Parameters</button>
+        </div>
     </div>
-    <div class="cookie-actions">
-        <button class="btn-cookie-decline" onclick="handleCookie(false)">Decline</button>
-        <button class="btn-cookie-accept" onclick="handleCookie(true)">Accept All</button>
-    </div>
-</div>
-<div id="toastContainer" class="toast-container"></div>
-<script src="script.js"></script>
+
+    <footer class="system-footer">
+        <div class="footer-links-row">
+            <a href="#" class="footer-link">Protocol Architecture</a>
+            <a href="#" class="footer-link">Privacy Ledger</a>
+            <a href="#" class="footer-link">Risk Disclosure Matrix</a>
+        </div>
+        <p class="footer-copyright-text">© 2026 LimeYield Labs Architecture. All sovereign operations protected by network validation frameworks.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
