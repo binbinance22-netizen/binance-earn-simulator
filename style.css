@@ -80,9 +80,6 @@ body {
     background-color: var(--primary);
     transform: translateY(-1px);
 }
-/* ==========================================================================
-   PART 2: HERO SECTION, LAYOUT GRID & DEFI VAULT CARDS
-   ========================================================================== */
 
 /* HERO SECTION CU STRAT VIZUAL PROASPĂT */
 .hero-section {
@@ -123,6 +120,9 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
+/* ==========================================================================
+   PART 2: HERO SECTION, LAYOUT GRID & DEFI VAULT CARDS
+   ========================================================================== */
 
 /* STRUCTURA GRILĂ INTEGRALĂ */
 .main-grid {
@@ -155,6 +155,8 @@ body {
     color: var(--text-main);
     border-bottom: 2px solid var(--bg-main);
     padding-bottom: 8px;
+    display: flex;
+    align-items: center;
 }
 
 .wallet-balance-status {
@@ -193,9 +195,13 @@ body {
     border-color: var(--primary);
     background-color: #ffffff;
 }
-/* ==========================================================================
-   PART 3: TABLES, MODALS, PRECISE COOKIE SYSTEMS & PHONE SMARTPHONE MEDIA QUERIES
-   ========================================================================== */
+
+.select-help-text {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-weight: 500;
+}
 
 .calculator-result-box {
     background-color: var(--bg-main);
@@ -221,14 +227,6 @@ body {
 /* LISTE ȘI POOL-URI DE PERFORMANȚĂ */
 .history-list {
     list-style: none;
-}
-
-.history-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
 }
 
 .table-container {
@@ -278,12 +276,32 @@ body {
     border-radius: 4px;
     font-size: 11px;
     font-weight: 700;
+    margin-left: 4px;
 }
 
-/* POPOPS ȘI CONSENTIMENT COOKIE */
+.badge-stable, .badge-layer {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    font-weight: 600;
+}
+.badge-stable { background-color: #e0f2fe; color: #0369a1; }
+.badge-layer { background-color: #f1f5f9; color: #475569; }
 /* ==========================================================================
-   REBRANDING: ULTRA-PREMIUM ALERTS & MODAL SYSTEM (WHITE & LIME VAULTS)
+   PART 3: REBRANDING - ULTRA-PREMIUM ALERTS & MODAL SYSTEM (WHITE & LIME)
    ========================================================================== */
+
+.badge-count {
+    background-color: var(--primary-lime);
+    color: #0f172a;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-left: auto;
+    letter-spacing: 0.3px;
+}
 
 .custom-modal-overlay {
     position: fixed;
@@ -291,8 +309,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(15, 23, 42, 0.3); /* Fundal întunecat discret de tip sticlă */
-    backdrop-filter: blur(8px);               /* Efect premium de blur modern */
+    background-color: rgba(15, 23, 42, 0.3);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -309,11 +327,8 @@ body {
     max-width: 440px;
     border: 1px solid var(--border-color);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
-    transform: translateY(0);
-    animation: slideUpModal 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Stiluri specifice pentru pictogramele de stare */
 .modal-alert-icon {
     font-size: 48px;
     margin-bottom: 16px;
@@ -328,6 +343,35 @@ body {
     margin-bottom: 12px;
 }
 
+.modal-meta-row {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+.modal-highlight-text {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.modal-btn-action-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.modal-btn-cancel, .modal-btn-confirm {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+.modal-btn-cancel { background-color: var(--bg-main); color: var(--text-muted); }
+.modal-btn-confirm { background-color: var(--primary); color: #ffffff; }
+
 .modal-alert-body-message {
     color: var(--text-muted);
     font-size: 14px;
@@ -336,7 +380,6 @@ body {
     font-weight: 500;
 }
 
-/* Butonul principal de Acknowledge / Confirmare în noul ton verde */
 .custom-alert-action-btn {
     width: 100%;
     padding: 14px;
@@ -350,24 +393,55 @@ body {
     box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
     transition: all 0.2s ease;
 }
-
 .custom-alert-action-btn:hover {
-    background-color: var(--primary); /* Devine verde intens la trecerea mouse-ului */
+    background-color: var(--primary);
     box-shadow: 0 6px 16px rgba(0, 200, 83, 0.25);
     transform: translateY(-1px);
 }
 
-/* ANIMAȚII FINE */
-@keyframes fadeInModal {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* LIVE FEED TELEMETRY PANELS */
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    margin-left: auto;
+    box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7);
+    animation: alertPulse 1.5s infinite;
 }
 
-@keyframes slideUpModal {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.activity-header {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
+.activity-feed-list {
+    list-style: none;
+    max-height: 280px;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-item-demo {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    font-size: 13px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-weight: 500;
+    animation: itemInflow 0.4s ease-out forwards;
+}
+.demo-user { color: var(--text-main); font-family: monospace; }
+.demo-amount { color: var(--primary); font-weight: 700; }
+.demo-pool { font-weight: 600; color: var(--text-muted); }
 
 .cookie-consent-footer-bar {
     position: fixed;
@@ -383,63 +457,27 @@ body {
     gap: 12px;
     z-index: 999;
 }
+.cookie-btn-accept { background-color: var(--primary-lime); color: #000; border: none; padding: 8px 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+.cookie-btn-decline { background-color: transparent; color: #fff; border: 1px solid var(--text-muted); padding: 8px 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+.cookie-btn-side { display: flex; gap: 10px; }
 
-.cookie-btn-accept {
-    background-color: var(--primary-lime);
-    color: #000;
-    border: none;
-    padding: 8px 14px;
-    font-weight: 600;
-    border-radius: 6px;
-}
-
-/* OPTIMIZARE CRITICĂ PENTRU ECRANE DE TELEFON (SMARTPHONE DISPLAY) */
+/* TELEFOANE MOBILE MEDIA QUERIES (SMARTPHONE DISPLAY OPTIMIZED) */
 @media (max-width: 768px) {
-    .navbar {
-        padding: 12px 16px;
-    }
-    .hero-title {
-        font-size: 28px;
-    }
-    .hero-subtitle {
-        font-size: 13px;
-    }
-    /* Transformă grila din 2 coloane într-un singur rând ordonat de sus în jos */
-    .main-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 0 12px;
-    }
-    .crypto-card {
-        padding: 16px;
-    }
-    .cookie-consent-footer-bar {
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
-    }
+    .navbar { padding: 12px 16px; }
+    .hero-title { font-size: 28px; }
+    .hero-subtitle { font-size: 13px; }
+    .main-grid { grid-template-columns: 1fr; gap: 20px; padding: 0 12px; }
+    .crypto-card { padding: 16px; }
+    .activity-header { display: none; }
+    .cookie-consent-footer-bar { left: 12px; right: 12px; bottom: 12px; }
 }
 
-.system-footer {
-    text-align: center;
-    padding: 30px 20px;
-    border-top: 1px solid var(--border-color);
-    margin-top: 40px;
-    background-color: #ffffff;
-}
+.system-footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); margin-top: 40px; background-color: #ffffff; }
+.footer-links-row { margin-bottom: 10px; }
+.footer-link { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; }
+.footer-copyright-text { font-size: 11px; color: var(--text-muted); }
 
-.footer-links-row {
-    margin-bottom: 10px;
-}
-
-.footer-link {
-    color: var(--text-muted);
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 12px;
-}
-
-.footer-copyright-text {
-    font-size: 11px;
-    color: var(--text-muted);
-}
+@keyframes alertPulse { 0% { box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(0, 200, 83, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); } }
+@keyframes itemInflow { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUpModal { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
